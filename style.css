@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0
+}
+
+
+/* FOND */
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-image: url(img/background.png);
+  background-position: center;
+  background-size: cover;
+  padding-left: 8%;
+  padding-right: 8%;
+  box-sizing: border-box;
+
+
+  /* NAVBAR */
+}
+.navbar {
+  height: 12%;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+  cursor: pointer;
+}
+
+.menu-icon {
+  width: 30px;
+  cursor: pointer;
+  margin-left: 40px;
+}
+nav {
+  flex: 1;
+  text-align: right;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 60px;
+}
+
+nav ul li a {
+   text-decoration: none;
+   color: white;
+   font-size: 13px;
+}
+
+
+.row {
+  display: flex;
+  height: 88%;
+  align-items: center;
+
+}
+
+.col {
+  flex-basis: 50% ;
+
+}
+
+h1 {
+  color: #000000;
+  font-size: 100px;
+}
+
+p {
+  color: #000000;
+  font-size: 17px;
+  line-height: 15px;
+  font-family: Cambria, Cochin, Georgia, serif;
+}
+
+/* SECTION 1 */
+
+button {
+  width: 190px;
+  height: 65px;
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  padding: 12px 0;
+  background: rgb(0, 0, 0);
+  border: 0;
+  border-radius: 20px;
+  outline: none;
+  margin-top: 30px;
+}
+
+/* CARTES */
+
+.card {
+  width: 350px;
+  height: 300px;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 10px 15px;
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.5s;
+}
+
+.card1 {
+  background-image: linear-gradient(rgba(0,0,0,0.10)),url(img/card1.png);
+}
+.card2 {
+  background-image: linear-gradient(rgba(0,0,0,0.10)),url(img/card2.png);
+}
+.card3 {
+  background-image: linear-gradient(rgba(0,0,0,0.10)),url(img/card3.png);
+}
+.card4 {
+  background-image: linear-gradient(rgba(0,0,0,0.10)),url(img/card4.png);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+h5 {
+  color: rgb(0, 0, 0);
+  text-shadow: 0 0 30px black;
+  font-family: Cambria, Cochin, Georgia, serif;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.card p {
+  color: rgb(0, 0, 0);
+  font-family: Cambria, Cochin, Georgia, serif;
+  text-shadow: 0 0 10px black;
+}
+
+.hero {
+  position: relative;
+}
+
+/* SECTION 2 */
+
+.sec2 {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: white;
+  background-image: url(img/backgroundsec3.png);
+  background-position: center;
+  background-size: cover;
+  padding-left: 8%;
+  padding-right: 8%;
+  box-sizing: border-box
+  
+}
+
+
+
+
+.sec2 .roww {
+   display: flex;
+  align-items: center;
+  background-color: #081b2c;
+  margin-top: 70px;
+  margin-left: -110px;
+  width: 1200px;
+  border-radius: 60px;
+  padding: 40px;
+  font-family: Cambria, Cochin, Georgia, serif;
+}
+
+.sec2 .coll {
+  flex-basis: 50% ;
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.sec2-img {
+  width: 500px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 40px;
+}
+
+.sec2 h1 {
+  font-size: 50px;  
+  margin-bottom: 15px;
+}
+
+.sec2 p {
+  font-size: 15px;
+  line-height: 25px;      
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateX(0);
+  }
+}
+
+.sec2 .roww {
+  opacity: 0;
+}
+
+.sec2 .roww.visible {
+  animation: slideFromLeft 1s ease forwards;
+}
+
+.sec2 .rowww {
+  display: flex;
+  align-items: center;
+  background-color: #c99088;
+  margin-top: 70px;
+  margin-left: 390px;
+  width: 1200px;
+  border-radius: 60px;
+  padding: 40px;
+  flex-direction: row-reverse;
+  font-family: Cambria, Cochin, Georgia, serif;
+}
+
+.sec2 .colll.rev {
+  flex-basis: 50% ;
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.sec22-img {
+  width: 500px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 40px;
+}
+
+.sec2 .hs {
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 90px;
+  font-family: Cambria, Cochin, Georgia, serif;
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateX(0);
+  }
+}
+
+.sec2 .rowww {
+  opacity: 0; 
+}
+
+.sec2 .rowww.visible {
+  animation: slideFromRight 1s ease forwards;
+}
+
