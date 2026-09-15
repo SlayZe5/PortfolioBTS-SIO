@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deruelle Noé Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3F4F7;
+    --surface:#FFFFFF;
+    --ink:#14171C;
+    --muted:#5B6270;
+    --accent:#2451FF;
+    --accent-soft:#E7ECFF;
+    --line: rgba(20,23,28,0.10);
+    --side-w: 260px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    position:fixed;
+    top:0; left:0; bottom:0;
+    width:var(--side-w);
+    padding:40px 32px;
+    display:flex;
+    flex-direction:column;
+    border-right:1px solid var(--line);
+    background:var(--surface);
+  }
+  .sidebar .name{
+    font-size:1.3rem;
+    font-weight:600;
+  }
+  .sidebar .role{
+    margin-top:6px;
+    font-size:0.88rem;
+    color:var(--muted);
+  }
+  .sidebar nav{
+    margin-top:52px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .sidebar nav a{
+    padding:9px 0;
+    font-size:0.95rem;
+    color:var(--muted);
+    border-left:2px solid transparent;
+    padding-left:14px;
+    margin-left:-14px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .sidebar nav a:hover, .sidebar nav a.active{
+    color:var(--ink);
+    border-left-color:var(--accent);
+  }
+  .sidebar .status{
+    margin-top:auto;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.82rem;
+    color:var(--muted);
+  }
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:#22C55E;
+    flex-shrink:0;
+  }
+  .sidebar .socials{
+    margin-top:18px;
+    display:flex;
+    gap:14px;
+    font-size:0.82rem;
+  }
+  .sidebar .socials a{ color:var(--muted); }
+  .sidebar .socials a:hover{ color:var(--accent); }
+
+  /* ---------- Main ---------- */
+  main{
+    margin-left:var(--side-w);
+  }
+  .wrap{
+    max-width:860px;
+    padding:0 56px;
+  }
+
+  section{
+    padding:96px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{ border-bottom:none; }
+
+  .eyebrow-num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.85rem;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding-top:120px; }
+  .hero h1{
+    font-size:clamp(2.2rem, 4.2vw, 3.1rem);
+    font-weight:600;
+    line-height:1.18;
+    max-width:16ch;
+  }
+  .hero h1 span{ color:var(--accent); }
+  .hero p{
+    margin-top:24px;
+    max-width:52ch;
+    font-size:1.08rem;
+    color:var(--muted);
+  }
+  .hero .cta{
+    margin-top:36px;
+    display:flex;
+    gap:14px;
+  }
+  .btn{
+    padding:12px 24px;
+    border-radius:8px;
+    font-size:0.92rem;
+    font-weight:500;
+  }
+  .btn.primary{ background:var(--ink); color:#fff; }
+  .btn.primary:hover{ background:var(--accent); }
+  .btn.ghost{ border:1px solid var(--line); }
+  .btn.ghost:hover{ border-color:var(--ink); }
+
+  h2.section-title{
+    font-size:1.7rem;
+    font-weight:600;
+    margin-bottom:40px;
+  }
+
+  /* ---------- Veille techno ---------- */
+  .watch-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  .watch-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .watch-card:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .watch-card .tag{
+    align-self:flex-start;
+    font-size:0.75rem;
+    font-weight:500;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .watch-card h3{
+    font-size:1.05rem;
+    font-weight:600;
+    line-height:1.35;
+  }
+  .watch-card p{
+    font-size:0.92rem;
+    color:var(--muted);
+    margin:0;
+  }
+  .watch-card .meta{
+    margin-top:auto;
+    display:flex;
+    justify-content:space-between;
+    font-size:0.78rem;
+    color:var(--muted);
+    padding-top:8px;
+    border-top:1px solid var(--line);
+  }
+  .watch-card .meta a{ color:var(--ink); font-weight:500; }
+  .watch-card .meta a:hover{ color:var(--accent); }
+
+  /* ---------- Compétences ---------- */
+  .skills-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .skill-group h3{
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .skill-row{
+    margin-bottom:16px;
+  }
+  .skill-row .label{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.9rem;
+    margin-bottom:6px;
+  }
+  .skill-row .label span:last-child{ color:var(--muted); }
+  .bar{
+    height:6px;
+    border-radius:4px;
+    background:var(--accent-soft);
+    overflow:hidden;
+  }
+  .bar i{
+    display:block;
+    height:100%;
+    background:var(--accent);
+    border-radius:4px;
+  }
+
+  .tools{
+    margin-top:44px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .tools span{
+    font-size:0.85rem;
+    padding:7px 14px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:20px;
+    color:var(--muted);
+  }
+
+  /* ---------- Parcours ---------- */
+  .timeline{
+    position:relative;
+    padding-left:32px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:5px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .tl-item{
+    position:relative;
+    padding-bottom:40px;
+  }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-32px; top:4px;
+    width:11px; height:11px;
+    border-radius:50%;
+    background:var(--surface);
+    border:2px solid var(--accent);
+  }
+  .tl-item .date{
+    font-size:0.8rem;
+    color:var(--accent);
+    font-weight:500;
+    margin-bottom:6px;
+  }
+  .tl-item h3{
+    font-size:1.1rem;
+    font-weight:600;
+  }
+  .tl-item .place{
+    font-size:0.9rem;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  .tl-item p{
+    margin-top:10px;
+    font-size:0.94rem;
+    color:var(--muted);
+    max-width:56ch;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact h2.section-title{ margin-bottom:16px; }
+  .contact > p{
+    color:var(--muted);
+    max-width:48ch;
+    margin-bottom:32px;
+  }
+  .contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .contact-links a{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+    font-size:1.05rem;
+    font-weight:500;
+  }
+  .contact-links a:last-child{ border-bottom:1px solid var(--line); }
+  .contact-links a span.sub{
+    font-size:0.85rem;
+    font-weight:400;
+    color:var(--muted);
+  }
+  .contact-links a:hover{ color:var(--accent); }
+
+  footer{
+    padding:28px 56px 48px;
+    font-size:0.82rem;
+    color:var(--muted);
+  }
+
+  /* ---------- Tableau compétences ---------- */
+.skills-table{
+  width:100%;
+  overflow-x:auto;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+
+.skills-table table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:680px;
+}
+
+.skills-table th{
+  text-align:left;
+  font-family:'Space Grotesk', sans-serif;
+  font-size:0.85rem;
+  font-weight:600;
+  color:var(--muted);
+  background:#F8F9FB;
+  padding:16px 18px;
+  border-bottom:1px solid var(--line);
+}
+
+.skills-table td{
+  padding:18px;
+  font-size:0.9rem;
+  vertical-align:middle;
+  border-bottom:1px solid var(--line);
+}
+
+.skills-table tbody tr:last-child td{
+  border-bottom:none;
+}
+
+.skills-table tbody tr{
+  transition:background .15s ease;
+}
+
+.skills-table tbody tr:hover{
+  background:#F8F9FB;
+}
+
+.skills-table td:first-child{
+  font-weight:600;
+  color:var(--ink);
+  width:30%;
+}
+
+.skills-table td:nth-child(2){
+  color:var(--muted);
+  width:50%;
+}
+
+.skills-table td:last-child{
+  width:20%;
+}
+
+.level{
+  display:inline-block;
+  padding:5px 11px;
+  border-radius:20px;
+  font-size:0.75rem;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+.level.intermediate{
+  color:var(--accent);
+  background:var(--accent-soft);
+}
+
+.level.beginner{
+  color:#A16207;
+  background:#FEF3C7;
+}
+
+@media (max-width:900px){
+  .skills-table{
+    margin-top:10px;
+  }
+}
+
+
+
+  /* ---------- Mobile nav toggle ---------- */
+  .menu-toggle{ display:none; }
+
+  @media (max-width:900px){
+    :root{ --side-w:0px; }
+    .sidebar{
+      position:relative;
+      width:100%;
+      height:auto;
+      flex-direction:row;
+      align-items:center;
+      justify-content:space-between;
+      padding:20px 24px;
+    }
+    .sidebar nav{
+      display:none;
+    }
+    .sidebar .status, .sidebar .socials{ display:none; }
+    main{ margin-left:0; }
+    .wrap{ padding:0 24px; }
+    .watch-grid, .skills-cols{ grid-template-columns:1fr; }
+    section{ padding:64px 0; }
+    footer{ padding:28px 24px 48px; }
+  }
+</style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div>
+      <div class="name">Deruelle Noé</div>
+      <div class="role"></div>
+    </div>
+    <nav>
+      <a href="#accueil">Accueil</a>
+      <a href="#veille">Veille technologique</a>
+      <a href="#competences">Compétences</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="socials">
+      <a href="#">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="mailto:noedrl@outlook.Com.com">Email</a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="wrap">
+
+      <section class="hero" id="accueil">
+        <div class="eyebrow-num">Portfolio 2026</div>
+        <h1>Cybersecurité <hr><span> BTS SIO</span></h1>
+        <p>Etudiant en informatique.</p>
+        <div class="cta">
+          <a class="btn primary" href="#veille">Ma veille technologique</a>
+          <a class="btn ghost" href="#contact">Me contacter</a>
+        </div>
+      </section>
+
+      <section id="veille">
+        <h2 class="section-title">Veille technologique</h2>
+        <div class="watch-grid">
+
+          <div class="watch-card">
+            <span class="tag">IA</span>
+            <h3>Danger de l'IA</h3>
+            <p></p>
+            <div class="meta"><span>12 sept. 2026</span><a href="#">Lire →</a></div>
+          
+        </div>
+      </section>
+
+      <section id="competences">
+  <h2 class="section-title">Compétences</h2>
+
+  <div class="skills-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Compétence</th>
+          <th>Statut</th>
+          <th>Preuve</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr onclick="window.location.href='competences/mini-pc.html'">
+          <td>Site web association AP</td>
+          <td>
+            <span class="check-icon">✓</span>
+          </td>
+          <td>
+            <span class="proof-link">Voir la preuve →</span>
+          </td>
+        </tr>
+
+        <tr onclick="window.location.href='competences/glpi.html'">
+          <td>Veille technologique du Portfolio</td>
+          <td>
+            <span class="check-icon">✓</span>
+          </td>
+          <td>
+            <span class="proof-link">Voir la preuve →</span>
+          </td>
+        </tr>
+
+        <tr onclick="window.location.href='competences/postes.html'">
+          <td>Portfolio</td>
+          <td>
+            <span class="check-icon">✓</span>
+          </td>
+          <td>
+            <span class="proof-link">Voir la preuve →</span>
+          </td>
+        </tr>
+
+        <tr onclick="window.location.href='competences/assistance.html'">
+          <td>Projet SLAM Moyenne BTS SIO</td>
+          <td>
+            <span class="check-icon">✓</span>
+          </td>
+          <td>
+            <span class="proof-link">Voir la preuve →</span>
+          </td>
+        </tr>
+
+        <tr onclick="window.location.href='competences/maintenance.html'">
+          <td>Projet Packet Tracer</td>
+          <td>
+            <span class="check-icon">✓</span>
+          </td>
+          <td>
+            <span class="proof-link">Voir la preuve →</span>
+          </td>
+        </tr>
+
+        <tr onclick="window.location.href='competences/parc.html'">
+          <td>Planification des différentes missions</td>
+          <td>
+            <span class="check-icon">✓</span>
+          </td>
+          <td>
+            <span class="proof-link">Voir la preuve →</span>
+          </td>
+        </tr>
+
+        <tr onclick="window.location.href='competences/developpement.html'">
+          <td>Configuration et déploiement des minis pcs</td>
+          <td>
+            <span class="check-icon">✓</span>
+          </td>
+          <td>
+            <span class="proof-link">Voir la preuve →</span>
+          </td>
+        </tr>
+
+        <tr onclick="window.location.href='competences/bdd.html'">
+          <td>Gestion des tickets avec GLPI</td>
+          <td>
+            <span class="check-icon">✓</span>
+          </td>
+          <td>
+            <span class="proof-link">Voir la preuve →</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+
+         
+
+        
+      </section>
+
+      <section id="parcours">
+        <h2 class="section-title">Parcours</h2>
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="date">2025 - 2027</div>
+            <h3>BTS-SIO Option SLAM</h3>
+            <div class="place">Gaston Berger, Lille</div>
+            <p></p>
+          </div>
+
+          <div class="tl-item">
+            <div class="date">mai 2026 - juillet 2026</div>
+            <h3>Stage service informatique</h3>
+            <div class="place">APEI les papillons blancs, Valenciennes</div>
+            <p>Plusieurs réalisations comme la configurations et l'installtion de pc, utilisation de GLPI pour gérer les tickets</p>
+          </div>
+          
+
+          <div class="tl-item">
+            <div class="date">2024</div>
+            <h3>Stage de professionalisation</h3>
+            <div class="place">Acta Immobilier, Douai</div>
+            <p>Gestion de comptes clients : mise à jour, création, supression, etc</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="date">2021 - 2024</div>
+            <h3>Bac Général option Anglais et NSI (informatique)</h3>
+            <div class="place"></div>
+            <p></p>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <h2 class="section-title">Contact : </h2>
+        <div class="contact-links">
+          <a href="mailto:noedrl@outlook.Com">Email <span class="sub">noedrl@outlook.Com</span></a>
+          <a href="#">LinkedIn</a>
+          <a href="https://github.com/SlayZe5">GitHub</a>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>© 2026 Deruelle Noé</footer>
+  </main>
+
+</body>
+</html>
