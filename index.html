@@ -174,6 +174,7 @@
     gap:12px;
     transition:border-color .15s ease, transform .15s ease;
   }
+  .watch-card:hover{cursor: pointer; }
   .watch-card:hover{ border-color:var(--accent); transform:translateY(-2px); }
   .watch-card .tag{
     align-self:flex-start;
@@ -450,6 +451,106 @@
     section{ padding:64px 0; }
     footer{ padding:28px 24px 48px; }
   }
+
+
+  .modal-content a {
+    color: blue;
+  }
+  /* ---------- Fenêtre modale veille ---------- */
+
+.modal{
+  display:none;
+  position:fixed;
+  z-index:1000;
+  inset:0;
+  background:rgba(20,23,28,0.55);
+  backdrop-filter:blur(4px);
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-content{
+  position:relative;
+  width:100%;
+  max-width:650px;
+  max-height:80vh;
+  overflow-y:auto;
+  background:var(--surface);
+  border-radius:16px;
+  padding:36px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+  animation:modalAppear .2s ease;
+}
+
+@keyframes modalAppear{
+  from{
+    opacity:0;
+    transform:translateY(15px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.modal-content .tag{
+  display:inline-block;
+  font-size:0.75rem;
+  font-weight:500;
+  color:var(--accent);
+  background:var(--accent-soft);
+  padding:4px 10px;
+  border-radius:20px;
+  margin-bottom:14px;
+}
+
+.modal-content h2{
+  font-size:1.8rem;
+  margin-bottom:20px;
+}
+
+.modal-content p{
+  color:var(--muted);
+  margin-bottom:16px;
+}
+
+.modal-content h3{
+  font-size:1.05rem;
+  margin-top:24px;
+  margin-bottom:8px;
+}
+
+.modal-close{
+  position:absolute;
+  top:18px;
+  right:22px;
+  border:none;
+  background:transparent;
+  font-size:1.8rem;
+  color:var(--muted);
+  cursor:pointer;
+  line-height:1;
+}
+
+.modal-close:hover{
+  color:var(--accent);
+}
+
+@media(max-width:600px){
+  .modal-content{
+    padding:26px;
+  }
+
+  .modal-content h2{
+    font-size:1.5rem;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -478,23 +579,38 @@
 
       <section class="hero" id="accueil">
         <div class="eyebrow-num">Portfolio 2026</div>
-        <h1>Cybersecurité <hr><span> BTS SIO</span></h1>
-        <p>Etudiant en informatique.</p>
+        <h1>Deruelle Noé <hr><span> BTS SIO</span></h1>
         <div class="cta">
           <a class="btn primary" href="#veille">Ma veille technologique</a>
           <a class="btn ghost" href="#contact">Me contacter</a>
         </div>
       </section>
 
+      <section id="Presentation">
+
+      <h2>OPTION SLAM</h2>
+
+        <p>L'option SLAM (Solutions Logicielles et Applications Métiers) est une formation 
+          de niveau bac+2 axée sur la conception, le développement et la maintenance de 
+          programmes applicatifs.</p>
+
+      <h2>OPTION SISR</h2>
+      <p>L'option SISR (Solutions d'Infrastructure, Systèmes et Réseaux) est un parcours de 
+        niveau Bac+2 qui forme des techniciens experts en 
+        administration, maintenance et sécurisation des réseaux et équipements informatiques.</p>
+      </section>
       <section id="veille">
         <h2 class="section-title">Veille technologique</h2>
         <div class="watch-grid">
 
-          <div class="watch-card">
-            <span class="tag">IA</span>
-            <h3>Danger de l'IA</h3>
-            <p></p>
-            <div class="meta"><span>12 sept. 2026</span><a href="#">Lire →</a></div>
+        <div class="watch-card" onclick="openModal()">
+        <span class="tag">IA</span>
+          <h3>Danger de l'IA</h3>
+          <p>
+          Les principaux risques liés à l'utilisation de l'intelligence artificielle.
+          </p>
+      </div>
+
           
         </div>
       </section>
@@ -654,5 +770,80 @@
     <footer>© 2026 Deruelle Noé</footer>
   </main>
 
+  <div class="modal" id="iaModal" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+
+    <button class="modal-close" onclick="closeModal()">x</button>
+
+    <span class="tag">Veille</span>
+
+    <h2>Les dangers de l'intelligence artificielle</h2>
+    <hr>
+    <h3>Descriptif </h3>
+    <p>
+      J’ai choisi de réaliser une veille technologique sur les dangers de 
+      l’intelligence artificielle car plus tard je veux travailler en cybersecurité. 
+      L’IA est une technologie qui évolue rapidement 
+      et qui est de plus en plus présente dans notre quotidien. Elle peut être utilisée 
+      pour faciliter de nombreuses tâches, mais elle peut également présenter des risques, 
+      notamment dans le domaine de la cybersécurité.
+    </p>
+
+    <h3>Objectif</h3>
+    <p>
+      Cette veille me permet d’améliorer mes connaissances en informatique et de 
+      mieux comprendre les nouvelles menaces auxquelles les professionnels de la cybersécurité 
+      peuvent être confrontés.
+
+    <h3>Méthode</h3>
+    <p>
+      Pour faire ma veille je consulte des articles sur Internet. J'utilise plusieurs solutions pour trouver des articles intéressant,
+      Google Alert avec les mots clés IA, Danger. Pour etre au courant de l'activité.
+    </p>
+    <hr>
+    </p>
+    <h3>Gemini dérape à son tour et pirate trois entreprises bien réelles </h3>
+    <p>21 septembre 2026 à 17h19 </p>
+    <a target="_blank" href="https://siecledigital.fr/2026/09/21/gemini-derape-a-son-tour-et-pirate-trois-entreprises-bien-reelles/">Article</a>
+    <p>
+      Gemini participait à un exercice de cybersécurité de type « capture the flag », dans lequel il devait récupérer 
+      des informations à partir des systèmes d’une entreprise fictive. Gemini a alors essayé de deviner des mots de 
+      passe jusqu’à parvenir à accéder au système protégé.
+    </p>
+    <hr>
+    <h3>Un ancien chercheur d’OpenAI et Anthropic alerte sur les risques de l’IA : « Nous jouons avec nos vies »  </h3>
+    <p>10 septembre 2026 </p>
+    <a target="_blank" href="https://www.hardwarecooking.fr/ancien-chercheur-openai-et-anthropic-alerte-risques-ia-nous-jouons-avec-nos-vies/">Article</a>
+    <p>
+      L'article présente les inquiétudes de Jacob Coxon, ancien chercheur chez OpenAI et Anthropic, concernant les risques liés au développement 
+      de l'intelligence artificielle. Selon lui, les capacités des IA progressent rapidement et pourraient devenir de plus en plus difficiles à contrôler. 
+      Il estime donc qu'il est important de renforcer la sécurité et de mieux encadrer le développement de ces technologies.
+    </p>
+  </div>
+</div>
+
 </body>
 </html>
+
+<script>
+  function openModal(){
+    document.getElementById("iaModal").classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal(event){
+    if(event && event.target !== document.getElementById("iaModal")){
+      return;
+    }
+
+    document.getElementById("iaModal").classList.remove("show");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("keydown", function(event){
+    if(event.key === "Escape"){
+      document.getElementById("iaModal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+  });
+</script>
